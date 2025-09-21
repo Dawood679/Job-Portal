@@ -15,7 +15,7 @@ async function main(req,res,next) {
   await connectDb()
   return next()
 }
-
+app.use(main)
 
 app.use(express.json());
 app.use(cookieParser());
@@ -26,7 +26,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(main)
+
 app.get("/name",(req,res)=>{
   res.send("dawood alam")
 })
