@@ -10,6 +10,8 @@ import applicationRoutes from "./routes/applicationRoute.js";
 dotenv.config({});
 const app = express();
 
+await connectDb();
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +29,7 @@ app.use("/api/v1/job",jobRoutes)
 app.use("/api/v1/application",applicationRoutes)
 
 app.listen(process.env.PORT, () => {
-  connectDb();
+  
 
   console.log("App is listning on this port 3000");
 });
