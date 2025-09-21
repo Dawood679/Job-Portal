@@ -17,10 +17,14 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://job-portal-ochre-two.vercel.app"],
     credentials: true,
   })
 );
+
+app.get("/name",(req,res)=>{
+  res.send("dawood alam")
+})
 
 //Routes file is here to add
 app.use("/api/v1/user", userRouter);
