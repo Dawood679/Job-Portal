@@ -29,6 +29,10 @@ const CompanyCreate = () => {
         const compantId = res.data.companyfind._id
         nevigate(`/admin/companies/${compantId}`)
       }
+       dispatch(setSingleComapny(res.data.companyfind))
+        toast.success(res.data.msg)
+        const compantId = res.data.companyfind._id
+        nevigate(`/admin/companies/${compantId}`)
     } catch (error) {
       console.log(error);
     }
