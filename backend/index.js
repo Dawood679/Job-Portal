@@ -10,7 +10,12 @@ import applicationRoutes from "./routes/applicationRoute.js";
 dotenv.config({});
 const app = express();
 
-await connectDb();
+async function main(req,res,next) {
+  await connectDb()
+  return next()
+}
+
+app.use(main)
 
 app.use(express.json());
 app.use(cookieParser());
