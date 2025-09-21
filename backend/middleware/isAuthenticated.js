@@ -4,7 +4,7 @@ export const isAuthenticated = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      return res.json({ msg: "User not authenticated" });
+      return res.json({ msg: "User not authenticated",token:req.cookies });
     }
     const decode = jwt.verify(token, process.env.SECRET_KEY);
 
