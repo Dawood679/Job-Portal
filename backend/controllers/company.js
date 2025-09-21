@@ -3,7 +3,8 @@ import  getDataUri  from "../utilis/dataUri.js";
 import cloudinary from "cloudinary";
 
 export const registerCompany = async (req, res) => {
-  const { companyName } = req.body;
+  try {
+    const { companyName } = req.body;
 
   if (!companyName) {
     return res.json({ msg: "Company name is required",success:false });
@@ -19,6 +20,11 @@ export const registerCompany = async (req, res) => {
   });
 
   return res.json({ msg: "Company created Successfully", companyfind,success:true });
+  } catch (error) {
+    console.log(error)
+    res.json({ success:false,error:error.message });
+    
+  }
 };
 
 export const getCompany = async (req, res) => {

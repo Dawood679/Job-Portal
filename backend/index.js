@@ -10,12 +10,12 @@ import applicationRoutes from "./routes/applicationRoute.js";
 dotenv.config({});
 const app = express();
 
+
 async function main(req,res,next) {
   await connectDb()
   return next()
 }
 
-app.use(main)
 
 app.use(express.json());
 app.use(cookieParser());
@@ -26,11 +26,10 @@ app.use(
     credentials: true,
   })
 );
-
+app.use(main)
 app.get("/name",(req,res)=>{
   res.send("dawood alam")
 })
-
 //Routes file is here to add
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/company", companyRoutes);
@@ -39,6 +38,6 @@ app.use("/api/v1/application",applicationRoutes)
 
 app.listen(process.env.PORT, () => {
   
-
-  console.log("App is listning on this port 3000");
+  
+  console.log(`App is listning on this port ${process.env.PORT}`);
 });

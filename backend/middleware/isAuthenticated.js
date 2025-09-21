@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const isAuthenticated = async (req, resizeBy, next) => {
+export const isAuthenticated = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
@@ -12,6 +12,9 @@ export const isAuthenticated = async (req, resizeBy, next) => {
       return res.json({ msg: "Invalid token" });
     }
     req.id = decode.userId;
-    next();
-  } catch (error) {}
+    console.log('midlle')
+    return next();
+  } catch (error) {
+    console.log(error)
+  }
 };
